@@ -2,7 +2,7 @@ import express from 'express'
 import path,  {dirname} from 'path'
 import {fileURLToPath} from 'url'
 import authRoutes from './routes/authRoutes.js'
-// import todoRoutes from './routes/todoRoutes.js'
+import incidentRoutes from './routes/incidentRoutes.js'
 import authMiddleware from './middleware/authMiddleware.js'
 
 const app = express()
@@ -25,7 +25,7 @@ app.use(express.json())
 
 //Routes
 app.use('/auth', authRoutes) //adds /auth to all routing in authRoutes
-// app.use('/todos', authMiddleware, todoRoutes)
+app.use('/incident', authMiddleware, incidentRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server has started on port: ${PORT}`)

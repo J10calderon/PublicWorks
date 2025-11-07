@@ -25,7 +25,7 @@ db.exec(`
         latitude TEXT,
         date DATETIME,
         description TEXT,
-        FOREIGN KEY(reported_by) REFERENCES users(id)
+        FOREIGN KEY(reported_by) REFERENCES user(id)
     )
 `)
 
