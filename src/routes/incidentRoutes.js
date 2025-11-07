@@ -24,24 +24,23 @@ router.post('/', (req, res) => {
 
 // Update an incident
 router.put('/:id', (req, res) => {
-    const { completed } = req.body
+    const { country, region, city, street, latitude, longitude, date, description } = req.body
     const { id } = req.params
-    const { page } = req.query
 
-    const updatedTodo = db.prepare('UPDATE todos SET completed = ? WHERE id = ?')
-    updatedTodo.run(completed, id)
+    const updatedTodo = db.prepare('UPDATE incident SET country = ?, region = ?, city = ?, street = ?, latitude = ?, longitude = ?, date = ?, description = ? WHERE id = ?')
+    updatedTodo.run(country, region, city, street, latitude, longitude, date, description, id)
 
-    res.json({ message: "Todo completed" })
+    res.json({ message: `Incident ${id} is updated`})
 })
 
 // Delete an incident
 router.delete('/:id', (req, res) => {
     const { id } = req.params
     const userId = req.userId
-    const deleteTodo = db.prepare(`DELETE FROM todos WHERE id = ? AND user_id = ?`)
+    const deleteTodo = db.prepare(`DELETE FROM incident WHERE id = ? AND reported_by = ?`)
     deleteTodo.run(id, userId)
     
-    res.send({ message: "Todo deleted" })
+    res.send({ message: `Incident ${id} deleted` })
 })
 
 export default router

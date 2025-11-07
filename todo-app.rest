@@ -38,3 +38,24 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYyNDg3
     "date": "06-11-2025 18:37:10",
     "description": "The bridge is broken"
 }
+
+### update an incident
+PUT http://localhost:5003/incident/2
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYyNDg3MjQ2LCJleHAiOjE3NjI1NzM2NDZ9.JSTwSyo9SJ6Dd73m0p_o0DDJpBmbC5_tAC75VUOzats
+
+{
+    "country": "Philippines",
+    "region": "Manila",
+    "city": "Quezon City",
+    "street": "Esguerra",
+    "latitude": "32",
+    "longitude": "11",
+    "date": "06-12-2025 18:37:10",
+    "description": "The road is broken on the right side"
+}
+
+### delete an incident
+DELETE http://localhost:5003/incident/1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYyNDg3MjQ2LCJleHAiOjE3NjI1NzM2NDZ9.JSTwSyo9SJ6Dd73m0p_o0DDJpBmbC5_tAC75VUOzats

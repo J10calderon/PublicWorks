@@ -19,9 +19,9 @@ app.use(express.static(path.join(__dirname, '../public')))
 app.use(express.json())
 
 //serving up the HTML file from the /public directory
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'index.html')) //locate path to find the files or folders
-// })
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html')) //locate path to find the files or folders
+})
 
 //Routes
 app.use('/auth', authRoutes) //adds /auth to all routing in authRoutes
