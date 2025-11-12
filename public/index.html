@@ -21,6 +21,7 @@
         <input id="firstname" placeholder="first name" style="display:none"/>
         <input id="lastname" placeholder="last name" style="display:none"/>
         <input id="email" placeholder="email" style="display:none">
+        
 
         <button id="authBtn" onclick="authenticate()">
             Login
@@ -33,6 +34,11 @@
     </div>
     </section>
 </body>
+
+    <main style="display: block;">
+
+
+    </main>
 <script>
     let token = localStorage.getItem('token')
 
@@ -47,7 +53,7 @@
     // elements
     // const nav = document.querySelector('nav')
     // const header = document.querySelector('header')
-    // const main = document.querySelector('main')
+    const main = document.querySelector('main')
     // const navElements = document.querySelectorAll('.tab-button')
     // const authContent = document.getElementById('auth')
     // const textError = document.getElementById('error')
@@ -57,8 +63,8 @@
     const firstname = document.getElementById('firstname');
     const lastname = document.getElementById('lastname');
     const email = document.getElementById('email');
-    // const registerBtn = document.getElementById('registerBtn')
-    // const authBtn = document.getElementById('authBtn')
+    const registerBtn = document.getElementById('registerBtn')
+    const authBtn = document.getElementById('authBtn')
     // const addTodoBtn = document.getElementById('addTodoBtn')
 
     async function toggleIsRegister() {
@@ -67,11 +73,40 @@
     document.querySelector('#auth > div h2').innerText = isRegistration ? 'Sign Up' : 'Login'
     document.querySelector('#authBtn').innerText = isRegistration ? 'Sign Up' : 'Login'
     document.querySelector('.register-content p').innerText = isRegistration ? 'Already have an account?' : 'Don\'t have an account?'
-    document.querySelector('.register-content button').innerText = isRegistration ? 'Sign in' : 'Sign up'
+    // document.querySelector('.register-content button').innerText = isRegistration ? 'Sign in' : 'Sign up'
 
     document.querySelector('#firstname').style.display = isRegistration ? 'block' : 'none'
     document.querySelector('#lastname').style.display = isRegistration ? 'block' : 'none'
     document.querySelector('#email').style.display = isRegistration ? 'block' : 'none'
+    }
+
+    function renderIncidents() {
+        // need to add filtering logic in here
+
+        // updateNavCount()
+        // updateHeaderText()
+
+        console.log('rendering incidents')
+
+        let incidentList = ``
+
+        // incidents.forEach((todo, todoIndex) => {
+        incidents.forEach((incident, incidentIndex) => {
+            incidentIndex = incident.id
+            incidentList += `
+            <div class="card incident-item">
+                <img src="images/map-cutout.png">
+                <p>"Incident Id ${incident.id}"</p>
+                <p>"Incident reported by ${incident.reported_by}"</p>
+                <p>"Incident description ${incident.description}"</p>
+                <p>"Incident country ${incident.country}"</p>
+                <p>"Incident region ${incident.region}"</p>
+                <p>"Incident city ${incident.city}"</p>
+                <p>"Incident date ${incident.date}"</p>
+            </div>
+            `
+        })
+        main.innerHTML = incidentList
     }
 
 
@@ -131,7 +166,7 @@
 
             // fetch todos
             // await fetchTodos()
-            // await fetchIncidents()
+            await fetchIncidents()
 
             // show dashboard
             // showDashboard()
@@ -152,60 +187,84 @@
     //CRUD LOGIC
 
     async function fetchIncidents() {
+
+        console.log('fetching incidents')
         isLoading = true
         const response = await fetch(apiBase + 'incident', {
-            headers: { 'Authorization': token }
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
         })
         const incidentData = await response.json()
+        console.log(incidentData)
         incidents = incidentData
         isLoading = false
-        // renderTodos()
+        renderIncidents()
     }
+ 
+    // async function updateIncident(index) {
+    //     // set task complete status to true
+    //     await fetch(apiBase + 'incident' + '/' + index, {
+    //         method: 'PUT',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Authorization': token
+    //         },
 
-    async function updateIncident(index) {
-        // set task complete status to true
-        await fetch(apiBase + 'incident' + '/' + index, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': token
-            },
+            
+    //         let incident = incidents.find(val => val.id === index)
+    //         body: JSON.stringify ({reported_by} )
+    //         // body: JSON.stringify({ task: todos.find(val => val.id === index).task, completed: 1 })
+    //     })
+    //     fetchIncidents()
+    // }
 
-            let incident = incidents.find(val => val.id === index)
-            body: JSON.stringify({ task: todos.find(val => val.id === index).task, completed: 1 })
-        })
-        fetchIncidents()
-    }
+//     db.exec(`
+//     CREATE TABLE incident (
+//         id INTEGER PRIMARY KEY AUTOINCREMENT,
+//         reported_by INTEGER,
+//         country TEXT,
+//         region TEXT,
+//         city TEXT,
+//         street TEXT,
+//         longitude TEXT,
+//         latitude TEXT,
+//         date DATETIME,
+//         description TEXT,
+//         FOREIGN KEY(reported_by) REFERENCES user(id)
+//     )
+// `)
 
-    async function deleteTodo(index) {
-        // set task complete status to true
-        await fetch(apiBase + 'todos' + '/' + index, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': token
-            },
-        })
-        fetchTodos()
-    }
+    // async function deleteTodo(index) {
+    //     // set task complete status to true
+    //     await fetch(apiBase + 'todos' + '/' + index, {
+    //         method: 'DELETE',
+    //         headers: {
+    //             'Authorization': token
+    //         },
+    //     })
+    //     fetchTodos()
+    // }
 
-    async function addTodo() {
-        // have to access this val later as it's rendered with js
-        const todoInput = document.getElementById('todoInput')
-        const task = todoInput.value
+    // async function addTodo() {
+    //     // have to access this val later as it's rendered with js
+    //     const todoInput = document.getElementById('todoInput')
+    //     const task = todoInput.value
 
-        if (!task) { return }
+    //     if (!task) { return }
 
-        await fetch(apiBase + 'todos', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': token
-            },
-            body: JSON.stringify({ task })
-        })
-        todoInput.value = ''
-        fetchTodos()
-    }
+    //     await fetch(apiBase + 'todos', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Authorization': token
+    //         },
+    //         body: JSON.stringify({ task })
+    //     })
+    //     todoInput.value = ''
+    //     fetchTodos()
+    // }
 
 
 

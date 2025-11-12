@@ -5,14 +5,14 @@ Content-Type: application/json
 {
     "firstname": "jio",
     "lastname" : "calderon",
-    "email": "j@bmail.com",
-    "username": "gilgamesh@gmail.com",
-    "password": "123123123"
+    "email": "jcalderon@gmail.com",
+    "username": "jiocalderon",
+    "password": "jiocalderon"
 }
 
 # {
-#     "username": "gilgamesh@gmail.com",
-#     "password": "123123123"
+#     "username": "jiocalderon",
+#     "password": "jiocalderon"
 # }
 
 ### Login a user POST /AUTH/LOGIN 
@@ -20,7 +20,7 @@ POST http://localhost:5003/auth/login
 Content-Type: application/json
 
 {
-"username": "gilgamesh@gmail.com", "password": "123123123"
+"username": "jiocalderon", "password": "jiocalderon"
 }
 
 ### Fetch all incidents

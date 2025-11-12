@@ -49,7 +49,7 @@ router.post('/login', (req, res) => {
         if (!passwordIsValid) { return res.status(401).send({message: "Invalid password"})}
 
 
-        console.log(user)
+        console.log(`Successfully authenticated ${user.firstname} ${user.lastname}`)
         //Successful authentication
         const token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: '24h'})
         res.json({token})
