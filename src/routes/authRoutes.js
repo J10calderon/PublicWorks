@@ -30,9 +30,6 @@ router.post('/register', (req, res) => {
         res.sendStatus(503)
     }
 
-    console.log(username, password)
-    res.sendStatus(201)
-
 })
 
 router.post('/login', (req, res) => {
