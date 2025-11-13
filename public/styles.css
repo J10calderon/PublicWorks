@@ -83,3 +83,22 @@ header {
     display: flex;
     gap: 1rem;
 }
+
+#title-text {
+    text-decoration: none;
+    display: flex;
+    gap:0;
+}
+
+.text-link {
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.gold{
+    color:rgb(252, 203, 8);
+}
+
+.blue{
+    color:rgba(0, 51, 160);
+}
