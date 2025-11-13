@@ -11,31 +11,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <header>
+        <div class="nav-container">
+            <a>
+                PublicWorks
+            </a>
+        </div>
+        <nav class="nav-container nav-container-second">
+            <a class="text-link"  target = "_blank" href="/"><p>Login</p></a>
+            <a class="text-link"  target = "_blank" href="/"><p>Register</p></a>
+            <a class="text-link"  target = "_blank" href="/"><p>Incidents</p></a>
+        </nav>
+    </header>
     <section id="auth">
         <div>
             <h2 className="sign-up-text">Login</h2>
         </div>
 
-        <input id="usernameInput" placeholder="username"/>
-        <input id="passwordInput" placeholder="********" type="password"/>
-        <input id="firstname" placeholder="first name" style="display:none"/>
-        <input id="lastname" placeholder="last name" style="display:none"/>
-        <input id="email" placeholder="email" style="display:none">
+        <input id="usernameInput" class="authInput" placeholder="username"/>
+        <input id="passwordInput" class="authInput" placeholder="********" type="password"/>
+        <input id="firstname" class="authInput" placeholder="first name" style="visibility:hidden"/>
+        <input id="lastname" class="authInput" placeholder="last name" style="visibility:hidden"/>
+        <input id="email" class="authInput" placeholder="email" style="visibility:hidden">
         
 
         <button id="authBtn" onclick="authenticate()">
-            Login
+            Submit
         </button>
-    </section>
-    <hr />
-    <div class="register-content">
-        <p>Don&apos;t have an account?</p>
-        <button onclick="toggleIsRegister()" id="registerBtn">Sign up</button>
-    </div>
+        <div class="register-content">
+            <p>Don&apos;t have an account?</p>
+            <button onclick="toggleIsRegister()" id="registerBtn">Register</button>
+        </div>
     </section>
 </body>
 
-    <main style="display: block;">
+    <main style="display: flex">
 
 
     </main>
@@ -55,7 +65,7 @@
     // const header = document.querySelector('header')
     const main = document.querySelector('main')
     // const navElements = document.querySelectorAll('.tab-button')
-    // const authContent = document.getElementById('auth')
+    const authContent = document.getElementById('auth')
     // const textError = document.getElementById('error')
     const username = document.getElementById('usernameInput')
     const password = document.getElementById('passwordInput')
@@ -69,15 +79,24 @@
 
     async function toggleIsRegister() {
     isRegistration = !isRegistration
-    registerBtn.innerText = isRegistration ? 'Sign in' : 'Sign up'
-    document.querySelector('#auth > div h2').innerText = isRegistration ? 'Sign Up' : 'Login'
-    document.querySelector('#authBtn').innerText = isRegistration ? 'Sign Up' : 'Login'
+    registerBtn.innerText = isRegistration ? 'Login' : 'Register'
+    document.querySelector('#auth > div h2').innerText = isRegistration ? 'Register' : 'Login'
     document.querySelector('.register-content p').innerText = isRegistration ? 'Already have an account?' : 'Don\'t have an account?'
-    // document.querySelector('.register-content button').innerText = isRegistration ? 'Sign in' : 'Sign up'
 
-    document.querySelector('#firstname').style.display = isRegistration ? 'block' : 'none'
-    document.querySelector('#lastname').style.display = isRegistration ? 'block' : 'none'
-    document.querySelector('#email').style.display = isRegistration ? 'block' : 'none'
+
+    document.querySelector('#firstname').style.visibility = isRegistration ? 'visible' : 'hidden'
+    document.querySelector('#lastname').style.visibility = isRegistration ? 'visible' : 'hidden'
+    document.querySelector('#email').style.visibility = isRegistration ? 'visible' : 'hidden'
+    }
+
+    // PAGE RENDERING LOGIC
+    async function showDashboard() {
+        // nav.style.display = 'block'
+        // header.style.display = 'flex'
+        main.style.display = 'flex'
+        authContent.style.display = 'none'
+
+        // await fetchIncidents()
     }
 
     function renderIncidents() {
@@ -112,11 +131,19 @@
 
     async function authenticate() {
     // access username and pass values
-    const usernameVal = username.value
-    const passVal = password.value
-    const firstnameVal = firstname.value
-    const lastnameVal = lastname.value
-    const emailVal = email.value
+    // const usernameVal = username.value
+    // const passVal = password.value
+    // const firstnameVal = firstname.value
+    // const lastnameVal = lastname.value
+    // const emailVal = email.value
+
+
+    //TEMPORARY for development-include values so that dev doesnt need to put it in every update
+    const usernameVal = "jiocalderon"
+    const passVal = "jiocalderon"
+    const firstnameVal = "jio"
+    const lastnameVal = "calderon"
+    const emailVal = "jcalderon@gmail.com"
 
 
     console.log('hello world')
@@ -164,12 +191,11 @@
             // authenicating into loading
             authBtn.innerText = 'Loading...'
 
-            // fetch todos
-            // await fetchTodos()
+            // fetch incidents
             await fetchIncidents()
 
             // show dashboard
-            // showDashboard()
+            showDashboard()
             
         } else {
             throw Error('❌ Failed to authenticate...')
