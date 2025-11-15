@@ -108,24 +108,30 @@
 
         console.log('rendering incidents')
 
-        let incidentList = ``
+        let incidentList = `<div class="card-container">`
 
         // incidents.forEach((todo, todoIndex) => {
         incidents.forEach((incident, incidentIndex) => {
             incidentIndex = incident.id
             incidentList += `
             <div class="card incident-item">
-                <img src="images/map-cutout.png">
-                <p>"Incident Id ${incident.id}"</p>
-                <p>"Incident reported by ${incident.reported_by}"</p>
-                <p>"Incident description ${incident.description}"</p>
-                <p>"Incident country ${incident.country}"</p>
-                <p>"Incident region ${incident.region}"</p>
-                <p>"Incident city ${incident.city}"</p>
-                <p>"Incident date ${incident.date}"</p>
+                <div class="incident-col-1">
+                    <p class="input">Description:</p> <p class="variable">${incident.description}</p>
+                    <p class="input">Reported by:</p> <p class="variable">${incident.reported_by}</p>
+                    <p class="input">Country:</p> <p class="variable">${incident.country}</p>
+                    <p class="input">Region:</p> <p class="variable">${incident.region}</p>
+                    <p class="input">City:</p> <p class="variable">${incident.city}</p>
+                    <p class="input">Date:</p> <p class="variable">${incident.date}</p>
+                    <p class="input">ID:</p> <p class="variable">${incident.id}</p>
+                </div>
+                <div class="incident-col-2">
+                    <img class="incident-image" src="images/map-cutout.png">
+                </div>
             </div>
             `
         })
+
+        incidentList += `</div>`
         main.innerHTML = incidentList
     }
 

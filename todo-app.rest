@@ -26,12 +26,12 @@ Content-Type: application/json
 ### Fetch all incidents
 GET http://localhost:5003/incident
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYyOTEyNDI5LCJleHAiOjE3NjI5OTg4Mjl9.-FU1EtN1Qa3IOuCL-ahoo8ZTwj5xh0CY2iONhaAHG-4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYzMDY5MjYwLCJleHAiOjE3NjMxNTU2NjB9.upJimWwNEMxAiVkN3Rb7M32NynItMhf28DZLHuNZN68
 
 ### Create an incident
 POST http://localhost:5003/incident
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYyOTEyNDI5LCJleHAiOjE3NjI5OTg4Mjl9.-FU1EtN1Qa3IOuCL-ahoo8ZTwj5xh0CY2iONhaAHG-4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYzMDY5MjYwLCJleHAiOjE3NjMxNTU2NjB9.upJimWwNEMxAiVkN3Rb7M32NynItMhf28DZLHuNZN68
 
 {
     "country": "Philippines",
@@ -47,7 +47,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYyOTEy
 ### update an incident
 PUT http://localhost:5003/incident/2
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYyOTEyNDI5LCJleHAiOjE3NjI5OTg4Mjl9.-FU1EtN1Qa3IOuCL-ahoo8ZTwj5xh0CY2iONhaAHG-4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYzMDY5MjYwLCJleHAiOjE3NjMxNTU2NjB9.upJimWwNEMxAiVkN3Rb7M32NynItMhf28DZLHuNZN68
 
 {
     "country": "Philippines",
@@ -63,4 +63,4 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYyOTEy
 ### delete an incident
 DELETE http://localhost:5003/incident/1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYyOTEyNDI5LCJleHAiOjE3NjI5OTg4Mjl9.-FU1EtN1Qa3IOuCL-ahoo8ZTwj5xh0CY2iONhaAHG-4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYzMDY5MjYwLCJleHAiOjE3NjMxNTU2NjB9.upJimWwNEMxAiVkN3Rb7M32NynItMhf28DZLHuNZN68

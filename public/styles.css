@@ -26,6 +26,7 @@ body {
     bottom: 0;
     background-image: url("/images/manila_road_1.jpg");
     background-size: cover;
+    background-attachment: scroll;
     opacity: .6;
     z-index: -1;
 }
@@ -101,4 +102,34 @@ header {
 
 .blue{
     color:rgba(0, 51, 160);
+}
+
+.card{
+    background: rgb(211,229,245,.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(1);
+    gap: 2rem;
+}
+
+/* .input {
+    justify-content: left;
+}
+
+.variable {
+    justify-content: right;
+} */
+
+.incident-col-1{
+    display: flex;
+    justify-content: space-between;
 }
