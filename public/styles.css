@@ -15,9 +15,13 @@ body {
     flex-direction: column;
     flex: 1;
     gap: 4rem;
+    background-image: url("/images/manila_road_1.jpg");
+      background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% auto;
 }
 
-*::before {
+/* *::before {
     content:"";
     position: absolute;
     top: 0;
@@ -26,10 +30,10 @@ body {
     bottom: 0;
     background-image: url("/images/manila_road_1.jpg");
     background-size: cover;
-    background-attachment: scroll;
+    background-attachment: fixed;
     opacity: .6;
     z-index: -1;
-}
+} */
 
 header {
     display: flex;
@@ -107,7 +111,7 @@ header {
 .card{
     background: rgb(211,229,245,.95);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 2rem;
     padding: 1rem 2rem;
@@ -129,7 +133,15 @@ header {
     justify-content: right;
 } */
 
+
 .incident-col-1{
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    gap:3rem;
+}
+.incident-col-2{
+    max-width: 50%;
+    overflow-x: auto;
+    overflow-y: auto;
 }
