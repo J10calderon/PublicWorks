@@ -127,17 +127,20 @@
                     </dl>
                         
                     <dl>
-                        <dd>${incident.description}</dd>
-                        <dd>${incident.reported_by}</dd>
-                        <dd>${incident.country}</dd>
-                        <dd>${incident.region}</dd>
-                        <dd>${incident.city}</dd>
-                        <dd>${incident.date}</dd>
-                        <dd>${incident.id}</dd>
+                        <dd contenteditable="false">${incident.reported_by}</dd>
+                        <dd contenteditable="true">${incident.country}</dd>
+                        <dd contenteditable="true">${incident.region}</dd>
+                        <dd contenteditable="true">${incident.city}</dd>
+                        <dd contenteditable="true">${incident.description}</dd>
+                        <dd contenteditable="true">${incident.date}</dd>
+                        <dd contenteditable="true">${incident.id}</dd>
                     </dl>
                 </div>
                 <div class="incident-col-2">
                     <img class="incident-image" src="images/map-cutout.png">
+                </div>
+                <div class="incident-buttons">
+                        <button id="updateIncident" onclick="updateIncident(${incidentIndex})">Update</button>
                 </div>
             </div>
             `
@@ -248,22 +251,23 @@
         renderIncidents()
     }
  
-    // async function updateIncident(index) {
-    //     // set task complete status to true
-    //     await fetch(apiBase + 'incident' + '/' + index, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Authorization': token
-    //         },
+    async function updateIncident(index) {
+        // set task complete status to true
+        await fetch(apiBase + 'incident' + '/' + index, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
 
             
-    //         let incident = incidents.find(val => val.id === index)
-    //         body: JSON.stringify ({reported_by} )
-    //         // body: JSON.stringify({ task: todos.find(val => val.id === index).task, completed: 1 })
-    //     })
-    //     fetchIncidents()
-    // }
+            // let incident = incidents.find(val => val.id === index)
+            // const x = incidents.find(val => val.id === index)
+            // body: JSON.stringify ({reported_by: incident.reported_by} )
+            // body: JSON.stringify({ task: todos.find(val => val.id === index).task, completed: 1 })
+        })
+        fetchIncidents()
+    }
 
 //     db.exec(`
 //     CREATE TABLE incident (
