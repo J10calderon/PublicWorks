@@ -24,10 +24,15 @@ router.post('/', (req, res) => {
 
 // Update an incident
 router.put('/:id', (req, res) => {
+    console.log('updating an incident')
     const { country, region, city, street, latitude, longitude, date, description } = req.body
     const { id } = req.params
 
-    const updatedTodo = db.prepare('UPDATE incident SET country = ?, region = ?, city = ?, street = ?, latitude = ?, longitude = ?, date = ?, description = ? WHERE id = ?')
+    console.log(req.body)
+    console.log(`id is ${id}`)
+    console.log(`country is ${country}`)
+
+    const updatedTodo = db.prepare(`UPDATE incident SET country = ?, region = ?, city = ?, street = ?, latitude = ?, longitude = ?, date = ?, description = ? WHERE id = ?`)
     updatedTodo.run(country, region, city, street, latitude, longitude, date, description, id)
 
     res.json({ message: `Incident ${id} is updated`})

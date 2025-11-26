@@ -127,11 +127,11 @@
                     </dl>
                         
                     <dl>
+                        <dd contenteditable="true">${incident.description}</dd>
                         <dd contenteditable="false">${incident.reported_by}</dd>
                         <dd contenteditable="true">${incident.country}</dd>
                         <dd contenteditable="true">${incident.region}</dd>
                         <dd contenteditable="true">${incident.city}</dd>
-                        <dd contenteditable="true">${incident.description}</dd>
                         <dd contenteditable="true">${incident.date}</dd>
                         <dd contenteditable="true">${incident.id}</dd>
                     </dl>
@@ -140,7 +140,9 @@
                     <img class="incident-image" src="images/map-cutout.png">
                 </div>
                 <div class="incident-buttons">
-                        <button id="updateIncident" onclick="updateIncident(${incidentIndex})">Update</button>
+                        <button onclick="updateIncident(${incidentIndex})" ${incident.id ? '' : ''}>
+                            <h6>Update</h6>
+                        </button>
                 </div>
             </div>
             `
@@ -231,6 +233,7 @@
         authBtn.innerText = 'Submit'
         isAuthenticating = false
     }
+}
 
     //CRUD LOGIC
 
@@ -253,17 +256,26 @@
  
     async function updateIncident(index) {
         // set task complete status to true
+
+        // let incident = incidents.find(val => val.id === index)
+
         await fetch(apiBase + 'incident' + '/' + index, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token
             },
-
-            
+            body: JSON.stringify({    
+                country: "Philippinez",
+                region: "Isabela",
+                city: "Roxas",
+                street: "Nuesa",
+                latitude: "44",
+                longitude: "22",
+                date: "06-11-2025 18:37:10",
+                description: "The bridge is broken"})
             // let incident = incidents.find(val => val.id === index)
             // const x = incidents.find(val => val.id === index)
-            // body: JSON.stringify ({reported_by: incident.reported_by} )
             // body: JSON.stringify({ task: todos.find(val => val.id === index).task, completed: 1 })
         })
         fetchIncidents()
@@ -317,6 +329,6 @@
 
 
 
-    }   
+     
 </script>
 </html>
