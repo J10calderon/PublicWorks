@@ -122,18 +122,24 @@
                         <dt>Country:</dt>
                         <dt>Region:</dt>
                         <dt>City:</dt>
+                        <dt>Street:</dt>
+                        <dt>Latitude:</dt>
+                        <dt>Longitude:</dt>
                         <dt>Date:</dt>
                         <dt>ID:</dt>
                     </dl>
                         
                     <dl>
-                        <dd contenteditable="true">${incident.description}</dd>
-                        <dd contenteditable="false">${incident.reported_by}</dd>
-                        <dd contenteditable="true">${incident.country}</dd>
-                        <dd contenteditable="true">${incident.region}</dd>
-                        <dd contenteditable="true">${incident.city}</dd>
-                        <dd contenteditable="true">${incident.date}</dd>
-                        <dd contenteditable="true">${incident.id}</dd>
+                        <dd id="incident-description${incidentIndex}" contenteditable="true">${incident.description}</dd>
+                        <dd id="incident-reported-by${incidentIndex}" contenteditable="false">${incident.reported_by}</dd>
+                        <dd id="incident-country${incidentIndex}" contenteditable="true">${incident.country}</dd>
+                        <dd id="incident-region${incidentIndex}" contenteditable="true">${incident.region}</dd>
+                        <dd id="incident-city${incidentIndex}" contenteditable="true">${incident.city}</dd>
+                        <dd id="incident-street${incidentIndex}" contenteditable="true">${incident.street}</dd>
+                        <dd id="incident-latitude${incidentIndex}" contenteditable="true">${incident.latitude}</dd>
+                        <dd id="incident-longitude${incidentIndex}" contenteditable="true">${incident.longitude}</dd>
+                        <dd id="incident-date${incidentIndex}" contenteditable="true">${incident.date}</dd>
+                        <dd id="incident-id${incidentIndex}" contenteditable="true">${incident.id}</dd>
                     </dl>
                 </div>
                 <div class="incident-col-2">
@@ -257,7 +263,8 @@
     async function updateIncident(index) {
         // set task complete status to true
 
-        // let incident = incidents.find(val => val.id === index)
+        let incident = incidents.find(inc => inc.id === index)
+        console.log(incident)
 
         await fetch(apiBase + 'incident' + '/' + index, {
             method: 'PUT',
@@ -266,14 +273,14 @@
                 'Authorization': token
             },
             body: JSON.stringify({    
-                country: "Philippinez",
-                region: "Isabela",
-                city: "Roxas",
-                street: "Nuesa",
-                latitude: "44",
-                longitude: "22",
-                date: "06-11-2025 18:37:10",
-                description: "The bridge is broken"})
+                country: document.getElementById(`incident-country${index}`).textContent,
+                region: document.getElementById(`incident-region${index}`).textContent,
+                city: document.getElementById(`incident-city${index}`).textContent,
+                street: document.getElementById(`incident-street${index}`).textContent,
+                latitude: document.getElementById(`incident-latitude${index}`).textContent,
+                longitude: document.getElementById(`incident-longitude${index}`).textContent,
+                date: document.getElementById(`incident-date${index}`).textContent,
+                description: document.getElementById(`incident-description${index}`).textContent})
             // let incident = incidents.find(val => val.id === index)
             // const x = incidents.find(val => val.id === index)
             // body: JSON.stringify({ task: todos.find(val => val.id === index).task, completed: 1 })
