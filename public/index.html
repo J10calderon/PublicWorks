@@ -45,10 +45,24 @@
         </div>
     </section>
 </body>
-
+    <button id="createIncidentBtn">Create New Incident</button>
+    <div id="popupOverLay" class="overlay"></div>
+    <div id="popupCard" class="popup-card">
+        <div class="popup-header">
+            <h2>Create New Incident</h2>
+        </div>
+        <div class="create-inputs">
+            <input id="incident-description-create">Description</input>
+            <input id="incident-country$-create">Country</input>
+            <input id="incident-region$-create">Region</input>
+            <input id="incident-city$-create">City</dd>
+            <input id="incident-street$-create">Street</input>
+            <input id="incident-latitude$-create">Latitude</input>
+            <input id="incident-longitude$-create">Longitude</input>
+            <input id="incident-date$-create">Date</input>
+        </div>
+    </div>
     <main style="display: flex">
-
-
     </main>
 <script>
     let token = localStorage.getItem('token')
