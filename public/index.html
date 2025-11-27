@@ -146,8 +146,11 @@
                     <img class="incident-image" src="images/map-cutout.png">
                 </div>
                 <div class="incident-buttons">
-                        <button onclick="updateIncident(${incidentIndex})" ${incident.id ? '' : ''}>
-                            <h6>Update</h6>
+                        <button onclick="updateIncident(${incidentIndex})">
+                            <h4>Update</h4>
+                        </button>
+                        <button onclick="deleteIncident(${incidentIndex})">
+                            <h4>Delete</h4>
                         </button>
                 </div>
             </div>
@@ -281,39 +284,19 @@
                 longitude: document.getElementById(`incident-longitude${index}`).textContent,
                 date: document.getElementById(`incident-date${index}`).textContent,
                 description: document.getElementById(`incident-description${index}`).textContent})
-            // let incident = incidents.find(val => val.id === index)
-            // const x = incidents.find(val => val.id === index)
-            // body: JSON.stringify({ task: todos.find(val => val.id === index).task, completed: 1 })
         })
         fetchIncidents()
     }
 
-//     db.exec(`
-//     CREATE TABLE incident (
-//         id INTEGER PRIMARY KEY AUTOINCREMENT,
-//         reported_by INTEGER,
-//         country TEXT,
-//         region TEXT,
-//         city TEXT,
-//         street TEXT,
-//         longitude TEXT,
-//         latitude TEXT,
-//         date DATETIME,
-//         description TEXT,
-//         FOREIGN KEY(reported_by) REFERENCES user(id)
-//     )
-// `)
-
-    // async function deleteTodo(index) {
-    //     // set task complete status to true
-    //     await fetch(apiBase + 'todos' + '/' + index, {
-    //         method: 'DELETE',
-    //         headers: {
-    //             'Authorization': token
-    //         },
-    //     })
-    //     fetchTodos()
-    // }
+    async function deleteIncident(index) {
+        await fetch(apiBase + 'incident' + '/' + index, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': token
+            },
+        })
+        fetchIncidents()
+    }
 
     // async function addTodo() {
     //     // have to access this val later as it's rendered with js
